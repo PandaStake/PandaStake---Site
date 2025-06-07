@@ -557,7 +557,7 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
     min-height: 260px;
     clear: both;
-    float: right;
+    float: none !important;
     margin-right: 65px;
     margin-top: -33.75rem;
     position: relative;
