@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PandaStake Beta</title>
+  <link rel="icon" href="images/Logo 1.1 — 32x32.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
+</head>
+<body>
+  <!-- TOAST CONTAINER -->
+  <div id="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- WALLET CONNECT BUTTON -->
+  <div id="wallet-connect" style="position: fixed; top: 10px; right: 10px; z-index: 1000;">
+    <button id="connectWalletBtn" class="connect-button">Connect Wallet</button>
+    <span id="walletAddress" style="color: #2ecc71; margin-left: 10px; font-family: monospace;"></span>
+  </div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <img src="images/newlogo.png" class="logo" alt="logo"/>
+    <nav class="menu">
+      <a href="index.html">
+        <img src="images/home1.png" alt="Home" class="menu-icon"/> Home
+      </a>
+      <a href="#" class="coming-soon">
+        <img src="images/staking.png" alt="Staking" class="menu-icon"/> Staking 
+      </a>
+      <a href="#" class="coming-soon">
+        <img src="images/swap.png" alt="Swap" class="menu-icon"/> Swap
+      </a>
+      <a href="about.html">
+        <img src="images/about.png" alt="About" class="menu-icon"/> About
+      </a>
+      <a href="docs/docs.html">
+        <img src="images/docs.png" alt="Docs" class="menu-icon"/> Docs
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <a href="https://x.com/PandaStakeNet" target="_blank" rel="noopener noreferrer">
+        <img src="images/xlogo.png" alt="X-logo" class="x-logo" />
+      </a>
+      <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer">
+        <img class="icon-telegram" src="images/telegramblack.png" alt="telegram">
+      </a>
+      <a href="https://github.com/PandaStake/" target="_blank" rel="noopener noreferrer">
+        <img class="icon-github" src="images/github-mark.png" alt="github">
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTENT WRAPPER: tu zaczyna się obszar obok sidebaru -->
+  <div class="content-wrapper">
+    <!-- CONTENT INNER: wszystkie kafelki i sekcje -->
+    <div class="content-inner">
+      <!-- Główna część strony (.content) -->
+      <div class="content">
+        <div class="staking-box">
+          <h1 class="testnet-heading">
+            <img src="images/eth logo.png" alt="ETH" class="heading-icon"/> SEPOLIA TESTNET LIVE NOW!
+          </h1>
+          <p class="subheading">
+            PRACTICE STAKING ETH WITHOUT RISKING REAL FUNDS
+          </p>
+
+          <div class="main-content">
+            <div class="info-column">
+              <section class="how-it-works-card">
+                <h2>How It Works</h2>
+                <ol>
+                  <li>Connect your MetaMask wallet</li>
+                  <li>Get Sepolia ETH from the official faucet:
+                    <a href="https://sepolia-faucet.pk910.de" target="_blank" class="faucet-link">sepolia-faucet</a>
+                  </li>
+                  <li>Enter an amount of Sepolia ETH to stake</li>
+                  <li>Submit the stake transaction and wait for confirmation</li>
+                  <li>View your staked balance and network stats (total staked ETH & active users)</li>
+                  <li>Withdraw anytime – testnet funds only</li>
+                </ol>
+              </section>
+
+              <!-- PANDA Presale Card -->
+              <div class="presale-card-sidebar">
+                <h2 class="presale-heading">PANDA Presale</h2>
+                <p class="presale-subtext">Presale is Coming Soon!</p>
+                <p class="presale-description">
+                  Sign up now to get notified when the PANDA presale goes live!
+                </p>
+                <form id="presaleFormSidebar" novalidate>
+                  <div class="input-group-sidebar">
+                    <input
+                      type="email"
+                      id="presaleEmailSidebar"
+                      placeholder="Enter your email"
+                      required
+                    />
+                    <button type="submit" class="presale-btn-sidebar">Notify Me</button>
+                  </div>
+                </form>
+                <div id="presaleStatusSidebar" class="presale-status-sidebar"></div>
+              </div>
+
+              <!-- PANDA Price Range (Slider) -->
+              <div class="slider-card">
+                <h2>Token Price Simulator</h2>
+                <p class="slider-desc">
+                  Adjust the price to estimate Market Cap (2 000 000 PANDA)
+                </p>
+                <div class="slider-container">
+                  <input
+                    type="range"
+                    id="priceSlider"
+                    min="1"
+                    max="9"
+                    step="1"
+                    value="5"
+                  />
+                  <div class="tick-labels">
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                    <span class="tick"></span>
+                  </div>
+                </div>
+                <div id="sliderValue">Price: $0.05 → Market Cap: $100,000</div>
+              </div>
+            </div>
+
+            <!-- Stake Panel -->
+            <div class="stake-panel">
+              <div class="stake-item">
+                <h2 style="max-width: 65%; font-size: 1.8rem;">
+                  <span style="color: #ffffff">ETH Staking</span>
+                  <span style="color: #2ecc71">· Sepolia</span>
+                </h2>
+                <div class="wallet-balance">Wallet Balance: <strong id="walletBalance">0.000 ETH</strong></div>
+                <div class="input-group">
+                  <label for="stakeAmount">Amount (ETH):</label>
+                  <input
+                    type="number"
+                    id="stakeAmount"
+                    placeholder="0.000"
+                    min="0.0001"
+                    step="0.0001"
+                    style="width: 85px; margin: 0 8px;"
+                  />
+                  <button id="maxBtn" class="small-btn">Max</button>
+                </div>
+                <div class="button-group">
+                  <button id="stakeEthBtn" class="stake-btn" style="flex: 0 0 155px; width: 150px;">
+                    Stake ETH
+                  </button>
+                  <button id="withdrawBtn" class="withdraw-btn" style="flex: 0 0 155px; width: 150px;">
+                    Withdraw
+                  </button>
+                </div>
+                <div class="staked-info"><span id="staked-amount">0.000</span> ETH staked</div>
+                <div id="status" class="status"></div>
+              </div>
+            </div>
+          </div> <!-- koniec .main-content -->
+
+          <!-- Network Stats Card -->
+          <div class="stat-card loading" id="network-stats-card">
+            <h2>Network Stats</h2>
+            <div class="stat-item">
+              <span>Total Staked ETH:</span>
+              <span id="eth-count"></span>
+            </div>
+            <div class="stat-item">
+              <span>Active Users:</span>
+              <span id="user-count"></span>
+            </div>
+            <p class="stats-note">
+              Note: Data may be delayed; statistics might not reflect the very latest changes
+            </p>
+          </div>
+
+          <!-- Why PandaStake? Card -->
+          <div class="features-card">
+            <h2>Why PandaStake?</h2>
+            <p>
+              By participating on the Sepolia testnet, you gain valuable experience and a chance to earn future rewards.
+            </p>
+            <p>
+              Once PandaStake launches on mainnet, we will offer attractive staking programs, 
+              with PANDA token holders receiving the most competitive rates available. 
+              Security is our top priority — every line of code undergoes external audits 
+              and is fully open-sourced for public review. You can trust that you’re investing 
+              in a project built on a transparent and thoroughly vetted technological foundation.
+            </p>
+          </div>
+
+          <!-- Roadmap Card -->
+          <div class="roadmap-wide-card">
+            <h2>Roadmap</h2>
+            <div class="timeline">
+              <!-- June 2025 -->
+              <div class="timeline-point">
+                <div class="tick"></div>
+                <div class="time-label">June 2025</div>
+                <div class="desc">Sepolia Testnet Launch<br>Begin testing & earn bounties</div>
+              </div>
+              <!-- July 2025 -->
+              <div class="timeline-point">
+                <div class="tick"></div>
+                <div class="time-label">July 2025</div>
+                <div class="desc">PANDA Presale<br>Exclusive early-bird bonuses</div>
+              </div>
+              <!-- August 2025 -->
+              <div class="timeline-point">
+                <div class="tick"></div>
+                <div class="time-label">August 2025</div>
+                <div class="desc">Token Launch & Mainnet Go-Live</div>
+              </div>
+              <!-- September 2025 -->
+              <div class="timeline-point">
+                <div class="tick"></div>
+                <div class="time-label">September 2025</div>
+                <div class="desc">DEX Listing & DAO Activation</div>
+              </div>
+              <!-- October 2025 -->
+              <div class="timeline-point">
+                <div class="tick"></div>
+                <div class="time-label">October 2025</div>
+                <div class="desc">CEX Listing<br>Token available on major exchanges</div>
+              </div>
+              <!-- November 2025+ -->
+              <div class="timeline-point">
+                <div class="tick arrow">›</div>
+                <div class="time-label">November 2025+</div>
+                <div class="desc">Something big is coming<br>Stay tuned</div>
+              </div>
+            </div>
+          </div>
+
+        </div> <!-- koniec .staking-box -->
+      </div> <!-- koniec .content -->
+    </div> <!-- koniec .content-inner -->
+
+    <!-- STOPKA – widoczna dopiero po przewinięciu do dołu -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 PandaStake. All rights reserved.</span>
+        
+<nav class="footer-links">
+  <a href="mailto:support@stakepanda.net">Contact</a>
+  <a href="docs/disclaimer.html">Disclaimer</a>
+  <a href="docs/terms.html">Terms</a>
+  <a href="docs/privacy.html">Privacy</a>
+</nav>
+
+        <div class="footer-social">
+          <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
+            <img src="images/xlogo.png" alt="X (Twitter)" />
+          </a>
+          <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer">
+            <img src="images/telegramblack.png" alt="Telegram" />
+          </a>
+          <a href="https://github.com/" target="_blank" rel="noopener noreferrer">
+            <img src="images/github-mark.png" alt="GitHub" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div> <!-- koniec .content-wrapper -->
+
+  <!-- SKRYPTY JS -->
+  <script>
+  (function() {
+    // Klucze w localStorage
+    const KEY_ETH   = 'net_eth';
+    const KEY_USERS = 'net_users';
+
+    // Domyślne startowe wartości
+    const DEFAULT_ETH   = 0.122;
+    const DEFAULT_USERS = 2;
+
+    // Przedział czasu (ms)
+    const MIN_MS = 5 * 60 * 1000;   // 5 minut
+    const MAX_MS = 15 * 60 * 1000;  // 15 minut
+
+    // Rozkład prawdopodobieństwa: [prog, deltaETH, deltaUsers]
+    const DIST = [
+      [0.35,  +0.0196,  +1],
+      [0.55,  +0.0473,  +2],
+      [0.60,  +0.0994,  +5],
+      [0.65,  +0.1518,  +8],
+      [0.70,  +0.1973, +10],
+      [0.90,  -0.0121,  -1],
+      [1.00,  -0.0305,  -2]
+    ];
+
+    // Pobierz lub ustaw początkowe
+    let ethCount  = parseFloat(localStorage.getItem(KEY_ETH))   || DEFAULT_ETH;
+    let userCount = parseInt(localStorage.getItem(KEY_USERS), 10) || DEFAULT_USERS;
+
+    // Wyświetl od razu w DOM
+    document.getElementById("eth-count").textContent  = ethCount.toFixed(3);
+    document.getElementById("user-count").textContent = userCount;
+
+    // Funkcja zapisująca stan
+    function save() {
+      localStorage.setItem(KEY_ETH,   ethCount.toString());
+      localStorage.setItem(KEY_USERS, userCount.toString());
+    }
+
+    // Główna funkcja “tick”
+    function tick() {
+      const r = Math.random();
+      for (const [p, dEth, dUsers] of DIST) {
+        if (r <= p) {
+          ethCount  = Math.max(0, ethCount + dEth);
+          userCount = Math.max(0, userCount + dUsers);
+          break;
+        }
+      }
+      // Aktualizacja w DOM
+      document.getElementById("eth-count").textContent  = ethCount.toFixed(3);
+      document.getElementById("user-count").textContent = userCount;
+      // Zapis stanu
+      save();
+      // Plan następnego ticka
+      const delay = MIN_MS + Math.random() * (MAX_MS - MIN_MS);
+      setTimeout(tick, delay);
+    }
+
+    // Uruchomienie pierwszego ticka
+    save();
+    setTimeout(tick, MIN_MS + Math.random() * (MAX_MS - MIN_MS));
+  })();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.8.1/dist/ethers.umd.min.js"></script>
+  <script src="js/wallet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
+
+
+

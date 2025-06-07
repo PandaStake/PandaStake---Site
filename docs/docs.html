@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Docs – PandaStake</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e1e1e, #162216);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: block;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+    }
+    /* ================= SIDEBAR ================= */
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 195px;
+      height: 100vh;
+      background: linear-gradient(to bottom, #151515, #0f0f0f);
+      display: flex;
+      flex-direction: column;
+      padding-left: 20px;
+      padding-top: 20px;
+      box-sizing: border-box;
+      z-index: 10;
+    }
+    .sidebar .logo {
+      width: 210px;
+      margin-bottom: 20px;
+      margin-top: -10px !important;
+      margin-left: -40px !important;
+    }
+    .menu {
+      display: flex;
+      flex-direction: column;
+      margin-top: -30px;
+    }
+    .menu a {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 26px !important;
+      font-weight: 600;
+      margin-bottom: 30px;
+      cursor: pointer;
+      padding-left: 4px !important;
+    }
+    .menu a:hover {
+      filter: invert(0.7);
+    }
+    .menu-icon {
+      width: 32px;
+      height: auto;
+    }
+    .sidebar-bottom {
+      margin-top: auto;
+      padding: 20px 0 10px 0;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar-bottom img.x-logo {
+      width: 30px;
+      height: auto;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+    .sidebar-bottom img.x-logo:hover {
+      filter: invert(0.7);
+    }
+    .icon-telegram {
+      width: 30px;
+      height: auto;
+      margin-left: 5px;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+    .icon-telegram:hover {
+      filter: invert(0.7);
+    }
+    .icon-github {
+      width: 30px;
+      height: auto;
+      margin-left: 15px;
+      cursor: pointer;
+      transition: filter 0.3s ease;
+    }
+    .icon-github:hover {
+      filter: invert(0.7);
+    }
+
+    /* ============== CONTENT WRAPPER ============== */
+    .content-wrapper {
+      margin-left: 195px;
+      display: flex;
+      flex-direction: column;
+      width: calc(100% - 195px);
+      box-sizing: border-box;
+    }
+
+    /* ============= DOC-CONTAINER ============= */
+    .doc-container {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      max-width: 800px;
+      width: 90%;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      box-sizing: border-box;
+    }
+    .doc-container h1 {
+      margin-top: 0;
+      color: #2ecc71;
+      font-size: 1.8rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .doc-container h2 {
+      color: #2ecc71;
+      font-size: 1.3rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .doc-container p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .instruction {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.9);
+      margin-bottom: 1.5rem;
+    }
+    .doc-links a {
+      display: block;
+      font-weight: bold;
+      text-decoration: underline;
+      color: #2ecc71;
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      transition: color 0.2s ease, margin-left 0.2s ease;
+      cursor: pointer;
+      padding-left: 0.25rem;
+    }
+    .doc-links a:hover {
+      color: #65f56c;
+      margin-left: 0.5rem;
+    }
+    .doc-links p {
+      margin-left: 1.5rem;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: #2ecc71;
+      text-decoration: none;
+      font-size: 0.9rem;
+      background: none; /* bez tła */
+      padding: 0;       /* usuwa wcięcia */
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    /* ================ FOOTER ================ */
+    .site-footer {
+      width: 100%;
+      background-color: #1e1e1e;
+      border-top: 1px solid rgba(46, 204, 113, 0.2);
+      padding: 1.5rem 1.5rem;
+      color: rgba(255, 255, 255, 0.8);
+      box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+      margin-top: 0rem;
+      box-sizing: border-box;
+    }
+    .footer-inner {
+      margin-left: 195px;
+      max-width: calc(100% - 195px);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1rem;
+      box-sizing: border-box;
+    }
+    .footer-inner span {
+      margin-left: -195px;
+    }
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      position: relative;
+      transition: color 0.2s ease;
+    }
+    .footer-links a:hover {
+      color: #ffffff;
+    }
+    .footer-links a::after {
+      content: "";
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #2ecc71;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+    }
+    .footer-links a:hover::after {
+      opacity: 1;
+    }
+    .footer-social {
+      display: flex;
+      gap: 16px;
+      margin-top: 0rem;
+    }
+    .footer-social img {
+      width: 24px;
+      height: auto;
+      transition: transform 0.2s ease, filter 0.2s ease;
+      cursor: pointer;
+    }
+    .footer-social img:hover {
+      transform: scale(1.1);
+      filter: drop-shadow(0 0 6px #2ecc71);
+    }
+
+    
+
+   
+
+    /* wyszarzenie przycisków nieaktywnych */
+    .sidebar .menu a.coming-soon {
+      opacity: 0.4;
+      cursor: default;
+    }
+    .sidebar .menu a.coming-soon:hover {
+      filter: none !important;
+      opacity: 0.4 !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="toast-container"></div>
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <img src="../images/newlogo.png" class="logo" alt="logo" />
+    <nav class="menu">
+      <a href="../index.html">
+        <img src="../images/home1.png" alt="Home" class="menu-icon" /> Home
+      </a>
+      <a href="#" class="coming-soon">
+        <img src="../images/staking.png" alt="Staking" class="menu-icon" /> Staking
+      </a>
+      <a href="#" class="coming-soon">
+        <img src="../images/swap.png" alt="Swap" class="menu-icon" /> Swap
+      </a>
+      <a href="../about.html">
+        <img src="../images/about.png" alt="About" class="menu-icon" /> About
+      </a>
+      <a href="docs.html">
+        <img src="../images/docs.png" alt="Docs" class="menu-icon" /> Docs
+      </a>
+    </nav>
+    <div class="sidebar-bottom">
+      <a href="https://x.com/PandaStakeNet" target="_blank" rel="noopener noreferrer">
+        <img src="../images/xlogo.png" alt="X-logo" class="x-logo" />
+      </a>
+      <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer">
+        <img src="../images/telegramblack.png" alt="Telegram" class="icon-telegram" />
+      </a>
+      <a href="https://github.com/PandaStake/" target="_blank" rel="noopener noreferrer">
+        <img src="../images/github-mark.png" alt="GitHub" class="icon-github" />
+      </a>
+    </div>
+  </div>
+
+  <!-- CONTENT WRAPPER -->
+  <div class="content-wrapper">
+    <!-- GŁÓWNY KONTAINER Z TREŚCIĄ -->
+    <div class="doc-container">
+      <a href="javascript:history.back()" class="back-link">← Go Back</a>
+
+      <h1>Docs (Documentation)</h1>
+
+      <p class="instruction">
+        Click on a document name below to open it:
+      </p>
+
+      <div class="doc-links">
+        <a href="whitepaper.html">Whitepaper</a>
+        <p>
+          Complete technical and strategic overview: platform architecture, tokenomics, roadmap, and long-term vision.
+        </p>
+
+        <a href="disclaimer.html">Disclaimer</a>
+        <p>
+          Legal notice about testnet-only usage, risk disclosure, and service availability.
+        </p>
+
+        <a href="terms.html">Terms of Service</a>
+        <p>
+          Rules and conditions governing platform usage, user obligations, intellectual property, and liability limitations.
+        </p>
+
+        <a href="privacy.html">Privacy Policy</a>
+        <p>
+          Details on data collection, usage, retention, sharing practices, and user rights.
+        </p>
+      </div>
+    </div>
+
+    <!-- STOPKA -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>© 2025 PandaStake. All rights reserved.</span>
+        <nav class="footer-links">
+          <a href="mailto:support@stakepanda.net">Contact</a>
+          <a href="disclaimer.html">Disclaimer</a>
+          <a href="terms.html">Terms</a>
+          <a href="privacy.html">Privacy</a>
+        </nav>
+        <div class="footer-social">
+          <a href="https://twitter.com/PandaStakeNet" target="_blank" rel="noopener noreferrer">
+            <img src="../images/xlogo.png" alt="X (Twitter)" />
+          </a>
+          <a href="https://telegram.org/" target="_blank" rel="noopener noreferrer">
+            <img src="../images/telegramblack.png" alt="Telegram" />
+          </a>
+          <a href="https://github.com/PandaStakeNet" target="_blank" rel="noopener noreferrer">
+            <img src="../images/github-mark.png" alt="GitHub" />
+          </a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="../js/app.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Privacy Policy – PandaStake</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <style>
+    /* Background matching the main site */
+    body {
+      background: linear-gradient(135deg, #1e1e1e, #162216);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Central “tile-style” container */
+    .doc-container {
+      background-color: #1e1e1e; /* same as tile color */
+      color: #ffffff;            /* white text */
+      max-width: 700px;
+      width: 90%;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .doc-container h1 {
+      margin-top: 0;
+      color: #2ecc71;             /* neon green */
+      font-size: 1.5rem;
+      text-align: center;
+    }
+
+    .doc-container h2 {
+      color: #2ecc71;
+      font-size: 1.2rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .doc-container p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+
+    .doc-container ul {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .doc-container li {
+      margin-bottom: 0.5rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: #2ecc71;
+      text-decoration: none;
+      font-size: 0.9rem;
+      background:none;
+      border: none;
+      box-shadow: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 600px) {
+      .doc-container {
+        margin: 1rem auto;
+        padding: 1.5rem;
+      }
+      .doc-container h1 {
+        font-size: 1.3rem;
+      }
+      .doc-container p,
+      .doc-container li {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc-container">
+    <button id="go-back-btn" class="back-link">← Go Back</button> 
+    <script>
+      document.getElementById("go-back-btn").addEventListener("click", () => {
+        // Jeśli w bieżącej karcie jest cofnąć się możliwe, zrób to:
+        if (window.history.length > 1) {
+          window.history.back();
+        } else {
+          // W przeciwnym wypadku zawsze przenieś na listę dokumentów:
+          window.location.href = "../index.html";
+        }
+      });
+    </script>
+    <h1>Privacy Policy</h1>
+
+    <h2>1. Introduction</h2>
+    <p>
+      PandaStake (“we,” “us,” or “our”) respects your privacy and is committed to protecting your personal data. This Privacy Policy explains how we collect, use, share, and safeguard your information when you visit and interact with our website and services. By using PandaStake, you consent to the practices described below.
+    </p>
+
+    <h2>2. Information We Collect</h2>
+    <h3>2.1 Information You Provide Directly</h3>
+    <ul>
+      <li><strong>Email Address:</strong> When you sign up for presale notifications, we collect your email address to send timely updates and announcements.</li>
+      <li><strong>Form Submissions:</strong> Any feedback, bug reports, or support requests you submit via contact forms or support channels.</li>
+    </ul>
+
+    <h3>2.2 Automatically Collected Information</h3>
+    <ul>
+      <li><strong>Usage Data:</strong> Non‐identifiable information about your interactions with our site (pages visited, time spent on each page, click events) collected to improve user experience.</li>
+      <li><strong>Log Data:</strong> Your IP address, browser type, operating system, device identifiers, and access timestamps are recorded in server logs for security monitoring and troubleshooting.</li>
+      <li><strong>Cookies and Similar Technologies:</strong>
+        <ul>
+          <li><em>Session Cookies:</em> Maintain your session state and temporary preferences.</li>
+          <li><em>Functional Cookies:</em> Enable essential site features (e.g., language preferences).</li>
+          <li><em>Analytics Cookies:</em> Gather aggregated and anonymized visitor statistics to help us understand overall usage patterns (we do not track individual user behavior).</li>
+        </ul>
+      </li>
+    </ul>
+
+    <h2>3. How We Use Your Information</h2>
+    <ul>
+      <li><strong>Presale Notifications:</strong> We use your email address to notify you about presale launches, related announcements, and other important updates.</li>
+      <li><strong>Platform Improvements:</strong> Usage data and analytics help us identify bugs, enhance user interface, optimize performance, and plan new features.</li>
+      <li><strong>Technical Support:</strong> Log data and form submissions enable us to diagnose issues and respond effectively to support requests.</li>
+      <li><strong>Legal Compliance and Security:</strong> We may use your data to comply with applicable laws, defend our legal rights, prevent fraud, and ensure the overall security of our platform.</li>
+    </ul>
+
+    <h2>4. Sharing Your Information</h2>
+    <ul>
+      <li>We do <strong>not</strong> sell, rent, or trade your personal information to third parties under any circumstances.</li>
+      <li>We may share aggregated, anonymized data (e.g., total number of presale signups) with partners or publicly, but such data will never identify you or any individual.</li>
+      <li>We may disclose personal data if required by law, court order, or subpoena, or to protect our rights, property, or safety, or that of our users.</li>
+      <li>Service providers who support our operations (e.g., email delivery services) may have limited access to your email address for the sole purpose of sending you notifications. They are bound by contractual obligations to maintain confidentiality and security.</li>
+    </ul>
+
+    <h2>5. Data Retention</h2>
+    <ul>
+      <li>We retain your email address and any support-related correspondence for as long as necessary to fulfill the purposes outlined in this policy or until you request deletion.</li>
+      <li>Log data and analytics records are retained for up to 12 months to allow for security audits, performance monitoring, and historical analysis. After 12 months, log data is permanently anonymized or deleted.</li>
+    </ul>
+
+    <h2>6. Your Rights</h2>
+    <ul>
+      <li><strong>Access & Correction:</strong> You have the right to request a copy of the personal data we hold about you and to correct any inaccuracies. To request access or correction, contact us at <a href="mailto:support@pandastake.net" style="color: #2ecc71;">support@pandastake.net</a>.</li>
+      <li><strong>Deletion (“Right to Be Forgotten”):</strong> You can ask us to delete your email address and any associated personal data. Submit a deletion request to <a href="mailto:support@pandastake.net" style="color: #2ecc71;">support@pandastake.net</a>. We will comply within 30 days, unless legal obligations require us to retain certain information longer.</li>
+      <li><strong>Opting Out of Cookies:</strong> You may disable cookies through your browser settings. Disabling cookies may impact certain site functionalities. For instructions, refer to your browser’s documentation.</li>
+    </ul>
+
+    <h2>7. Cookies and Analytics</h2>
+    <p>
+      Cookies are small text files stored on your device when you visit a website. PandaStake uses cookies to:
+    </p>
+    <ul>
+      <li><strong>Session Cookies:</strong> Keep you logged in and maintain temporary settings.</li>
+      <li><strong>Analytical Cookies:</strong> Collect anonymized usage statistics via services like Google Analytics (configured to anonymize IP addresses at the earliest possible stage). These statistics help us improve site performance and user experience.</li>
+    </ul>
+    <p>
+      You can choose to delete or block cookies via your browser settings. Consult your browser’s help resources for instructions on managing cookies. Blocking cookies may prevent certain features from functioning properly.
+    </p>
+
+    <h2>8. Children’s Privacy</h2>
+    <p>
+      PandaStake is intended for users aged 13 and above. We do not knowingly collect personal information from individuals under the age of 13. If you believe we have inadvertently gathered data from a minor, please contact us immediately at <a href="mailto:support@pandastake.net" style="color: #2ecc71;">support@pandastake.net</a>, and we will remove that information promptly.
+    </p>
+
+    <h2>9. Security</h2>
+    <p>
+      We implement industry-standard technical and organizational measures—such as SSL/TLS encryption, firewalls, and access controls—to protect your information. However, no method of data transmission over the internet or electronic storage can be guaranteed 100% secure. While we strive to protect your data, we cannot guarantee absolute security. You acknowledge and accept this inherent risk when using our Platform.
+    </p>
+
+    <h2>10. Third-Party Links</h2>
+    <p>
+      Our website may contain links to third-party services (e.g., Sepolia faucet, social media platforms). We are not responsible for the privacy practices, content, or security of these external sites. We encourage you to review their respective privacy policies before providing any personal information.
+    </p>
+
+    <h2>11. Changes to This Policy</h2>
+    <p>
+      We may update this Privacy Policy periodically to reflect changes in our practices, new features, or legal requirements. Any revisions will be posted on this page with a “Last Updated” date. Your continued use of PandaStake following the posting of changes signifies your acceptance of those modifications.
+    </p>
+
+    <h2>12. Contact Information</h2>
+    <p>
+      If you have any questions, concerns, or requests regarding this Privacy Policy, please contact us at:  
+      <br /><br />
+      <strong>support@pandastake.net</strong>
+    </p>
+
+    <p><em>Last Updated: June 2025</em></p>
+  </div>
+</body>
+</html>
