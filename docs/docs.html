@@ -257,6 +257,80 @@
       filter: none !important;
       opacity: 0.4 !important;
     }
+
+
+    /* ==== FIX STOPKI TYLKO W docs.html ==== */
+
+/* 1) Wrapper flex-column, by stopka była na dole */
+.content-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 100vh !important;
+}
+
+/* 2) Kontener treści rośnie i wypycha stopkę */
+.doc-container {
+  flex: 1 0 auto !important;
+}
+
+/* 3) Stopka przyklejona do dołu i pełna szerokość obszaru content */
+.site-footer {
+  margin-top: auto !important;
+  margin-left: 195px !important;               /* pomija sidebar */
+  width: calc(100% - 195px) !important;         /* pełna szerokość bez sidebaru */
+  box-sizing: border-box !important;
+}
+
+/* 4) Wyrównanie środka stopki */
+.footer-inner {
+  margin-left: 0 !important;                    /* usuń wcześniejsze przesunięcie */
+  max-width: 100% !important;                   /* przywróć pełną szerokość */
+  display: flex !important;
+  justify-content: space-between !important;    /* tekst po lewej, ikony po prawej */
+  align-items: center !important;
+  padding: 0 1rem !important;
+}
+
+/* 5) Usuń dodatkowe marginesy na elementach wewnątrz */
+.footer-inner span,
+.footer-inner .footer-social {
+  margin: 0 !important;
+}
+
+
+/* ==== DOCS FOOTER: align footer-inner with doc-container ==== */
+.content-wrapper .site-footer {
+  margin-left: 0px !important;
+  width: calc(100% - 1px) !important;
+  box-sizing: border-box;
+}
+
+.content-wrapper .site-footer .footer-inner {
+  /* dopasuj do szerokości doc-container */
+  width: 90%;
+  max-width: 800px;
+  margin: 0 auto;              /* wycentrowanie w obszarze nad sidebarem */
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;             /* pionowy padding, poziomy już w marży */
+}
+
+/* usuń stare marginesy */
+.content-wrapper .site-footer .footer-inner span,
+.content-wrapper .site-footer .footer-inner .footer-social {
+  margin: 0 !important;
+}
+
+/* delikatne przesunięcie całej zawartości stopki w prawo */
+.content-wrapper .site-footer .footer-inner {
+  position: relative;
+  left: 30px !important;
+}
+
+.footer-inner {
+  margin-left: 40px !important; }
+
   </style>
 </head>
 <body>

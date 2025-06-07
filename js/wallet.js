@@ -19,10 +19,10 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.setItem('walletAddress', account);
             connectBtn.textContent = 'Disconnect';
           } catch (err) {
-            alert('Nie udało się połączyć z portfelem.');
+            alert('Unable to connect to the wallet. Please try again');
           }
         } else {
-          alert('Zainstaluj MetaMask!');
+          alert('Please install MetaMask!');
         }
       } else {
         // Rozłączenie – usuń dane
