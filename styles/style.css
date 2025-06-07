@@ -1359,3 +1359,9 @@ input[type="number"]::-moz-outer-spin-button {
 
 
 
+  .footer-inner > span {
+    margin-left: 20px !important;
+  }
+  .footer-inner .footer-social{
+    margin-right: 80px !important
+  }
