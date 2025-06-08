@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whitepaper – PandaStake</title>
+  <link rel="stylesheet" href="../styles/style.css" />
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e1e1e, #162216);
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      color: #ffffff;
+    }
+    .doc-container {
+      background-color: #1e1e1e;
+      color: #ffffff;
+      max-width: 800px;
+      width: 90%;
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    }
+    .doc-container h1 {
+      margin-top: 0;
+      color: #2ecc71;
+      font-size: 1.8rem;
+      text-align: center;
+    }
+    .doc-container h2 {
+      color: #2ecc71;
+      font-size: 1.3rem;
+      margin-top: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .doc-container p,
+    .doc-container ul {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .doc-container ul {
+      margin-left: 1.5rem;
+      list-style-type: disc;
+    }
+    .doc-container li {
+      margin-bottom: 0.5rem;
+    }
+    .back-link {
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      color: #2ecc71;
+      text-decoration: none;
+      font-size: 0.9rem;
+      background:none;
+      border: none;
+      box-shadow: none;
+    }
+    .back-link:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 600px) {
+      .doc-container {
+        margin: 1rem auto;
+        padding: 1.5rem;
+      }
+      .doc-container h1 {
+        font-size: 1.5rem;
+      }
+      .doc-container h2 {
+        font-size: 1.1rem;
+      }
+      .doc-container p,
+      .doc-container li {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="doc-container">
+    <button id="go-back-btn" class="back-link">← Go Back</button> 
+    <script>
+      document.getElementById("go-back-btn").addEventListener("click", () => {
+        // Jeśli w bieżącej karcie jest cofnąć się możliwe, zrób to:
+        if (window.history.length > 1 && document.referrer.includes(location.origin)) {
+          window.history.back();
+        } else {
+          // W przeciwnym wypadku zawsze przenieś na listę dokumentów:
+          window.location.href = "docs.html";
+        }
+      });
+    </script>
+    
+    <h1>Whitepaper</h1>
+
+    <section>
+      <h2>1. Introduction</h2>
+      <p>
+        PandaStake is an educational DeFi platform initially operating on the Sepolia testnet. Our mission is to provide a risk-free environment where anyone can learn and practice Ethereum staking mechanics using Sepolia test ETH. By simulating staking workflows, users gain hands-on experience with MetaMask, smart contracts, and reward calculations—without risking real funds. 
+      </p>
+      <p>
+        After the testnet phase, we will launch the full PandaStake ecosystem on Polygon, introducing the PANDA token, staking capabilities, and additional DeFi features.
+      </p>
+    </section>
+
+    <section>
+      <h2>2. Challenge & Mission</h2>
+      <p>
+        Many newcomers to DeFi hesitate due to high gas fees, potential contract bugs, and the risk of financial loss. As a result, they often forgo valuable learning opportunities and plunge directly into mainnet investments with insufficient knowledge.
+      </p>
+      <p>
+        <strong>PandaStake’s mission</strong> is to remove these barriers by offering:
+      </p>
+      <ul>
+        <li>
+          <strong>Safe Learning Environment</strong> – Users stake Sepolia testnet ETH, fully knowing that no real assets are at risk.
+        </li>
+        <li>
+          <strong>Open-Source Transparency</strong> – All smart contracts and deployment scripts are publicly available for review on GitHub.
+        </li>
+        <li>
+          <strong>Preparation for Mainnet DeFi</strong> – By familiarizing users with staking workflows, we prepare them for the eventual launch on Polygon, where they will stake PANDA tokens and interact with full-featured DeFi protocols.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>3. Architecture & Functionalities</h2>
+      <h3>3.1. Smart Contract: <em>StakingETH.sol</em> (Sepolia Testnet)</h3>
+      <p>
+        The <code>StakingETH.sol</code> contract enables users to stake and withdraw Sepolia test ETH:
+      </p>
+      <ul>
+        <li><strong>stake()</strong> – Accepts ETH and records the amount under <code>balances[msg.sender]</code>.</li>
+        <li><strong>withdraw(uint256 amount)</strong> – Allows withdrawal if <code>balances[msg.sender] ≥ amount</code>.</li>
+        <li><strong>getBalance(address user)</strong> – Returns the current staked balance for a given address.</li>
+      </ul>
+      <p>
+        This contract is deployed on Sepolia at <code>0x07Bd5A1A5AB8F754B4aB3c938affc1DC7fcbB671</code>. Its source code is publicly verified on Sepolia Etherscan.
+      </p>
+
+      <h3>3.2. Backend (Node.js & Express)</h3>
+      <p>
+        Our backend provides two key endpoints:
+      </p>
+      <ul>
+        <li>
+          <code>GET /network-stats</code> – Returns current staking pool data (total staked Sepolia ETH and active user count).
+        </li>
+        <li>
+          <code>POST /presale-signup</code> – Collects email addresses for the PANDA token presale. Emails are stored securely in a JSON file.
+        </li>
+      </ul>
+      <p>
+        Both endpoints are designed for educational purposes; no real funds are affected in the testnet environment.
+      </p>
+
+      <h3>3.3. Frontend (HTML/CSS/JS + Ethers.js + MetaMask)</h3>
+      <p>
+        The PandaStake UI offers:
+      </p>
+      <ul>
+        <li>
+          <strong>ETH Staking Panel</strong> – Connect MetaMask to Sepolia, enter an amount of testnet ETH, and stake. Real-time wallet balance and staked balance updates.
+        </li>
+        <li>
+          <strong>Presale Signup Form</strong> – Submit an email address to join the PANDA presale notification list.
+        </li>
+        <li>
+          <strong>Token Price Simulator</strong> – A slider (steps 1–9) maps to hypothetical PANDA prices ($0.05 → $10.00). Assuming a total supply of 2 000 000 PANDA, the simulator displays corresponding market caps.
+        </li>
+        <li>
+          <strong>Responsive “Cyber-Neon” Theme</strong> – Dark background (#1e1e1e), neon green accents (#2ecc71), and subtle glow effects. Fully responsive for desktop, tablet, and mobile.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>4. Tokenomics</h2>
+      <p>
+        The PANDA token is an ERC-20 token on Polygon. Total supply is fixed at 10 000 000 PANDA. The initial allocation is structured to balance immediate accessibility, long-term incentives, and community rewards.
+      </p>
+
+      <h3>4.1. Circulating Supply at Launch (20 % = 2 000 000 PANDA)</h3>
+      <ul>
+        <li>
+          <strong>Team (2 % = 200 000 PANDA)</strong><br />
+          • Available immediately upon launch. <br />
+          • No vesting or lock-up: these tokens fund core contributors’ ongoing work.
+        </li>
+        <li>
+          <strong>Airdrop #1 (5 % = 500 000 PANDA)</strong><br />
+          • Distributed to early testers and active community members. <br />
+          • Any unsold tokens from the presale allocation (if <1 300 000 PANDA are not sold) roll into this airdrop pool.
+        </li>
+        <li>
+          <strong>Presale (13 % = 1 300 000 PANDA)</strong><br />
+          • Offered via the official Presale contract. <br />
+          • Unsold tokens automatically transfer to the Airdrop #1 pool.
+        </li>
+      </ul>
+      <p>
+        Only these 2 000 000 PANDA are included in the initial circulating supply and market capitalization.
+      </p>
+
+      <h3>4.2. Team Vesting (20 % = 2 000 000 PANDA)</h3>
+      <ul>
+        <li><strong>Lock-up period:</strong> 12 months</li>
+        <li><strong>Cliff:</strong> 3 months</li>
+        <li><strong>Vesting schedule:</strong> After the 3-month cliff, tokens vest linearly over the next 9 months.</li>
+      </ul>
+      <p>
+        This ensures that core contributors remain committed, aligning their incentives with project success. These tokens do not count toward circulating supply until vested, so they do not impact initial market capitalization.
+      </p>
+
+      <h3>4.3. Reserve (30 % = 3 000 000 PANDA)</h3>
+      <ul>
+        <li><strong>Initial restriction:</strong> Not used or sold during the first 3 months post-launch.</li>
+        <li><strong>Post-restriction usage:</strong> May be tapped only if operational funding is insufficient, and only in minimal amounts for:<br />
+          1. Infrastructure costs (servers, hosting, maintenance)<br />
+          2. Emergency grants or incentives if development or marketing budgets are depleted<br />
+          3. Small liquidity injections if absolutely necessary
+        </li>
+        <li><strong>Transparency:</strong> Any allocation from the Reserve will be publicly documented via our on-chain dashboard, detailing date, amount, and purpose.</li>
+      </ul>
+      <p>
+        These tokens remain off-market until the restriction period ends, so they are not included in initial circulating supply.
+      </p>
+
+      <h3>4.4. Marketing (10 % = 1 000 000 PANDA)</h3>
+      <ul>
+        <li><strong>Distribution:</strong> Released in stages to fund marketing campaigns, partnerships, influencer collaborations, and promotional materials.</li>
+        <li><strong>Notification:</strong> Before each tranche is unlocked, the team will publish a public announcement (e.g., on Telegram and Twitter) specifying the amount and intended use.</li>
+      </ul>
+      <p>
+        Tokens enter circulation gradually and transparently; the community will be informed whenever new marketing tokens are released.
+      </p>
+
+      <h3>4.5. Subsequent Airdrops (20 % = 2 000 000 PANDA)</h3>
+      <ul>
+        <li><strong>Purpose:</strong> Reward long-term community engagement—bug hunters, content creators, core testers, and governance participants.</li>
+        <li><strong>Timeline:</strong> Distributed over the first 12–18 months following mainnet launch.</li>
+        <li><strong>Release notifications:</strong> Each airdrop tranche will be accompanied by a public notice (via official channels) indicating amount, eligibility criteria, and distribution date.</li>
+      </ul>
+      <p>
+        These tokens are not released at launch; they enter circulation incrementally, always with advance notice to ensure transparency.
+      </p>
+
+      <h3>4.6. Initial Market Capitalization</h3>
+      <p>
+        Only the 2 000 000 PANDA allocated to Circulating Supply at Launch (20 %) are considered when calculating the initial market capitalization. All other allocations (Team Vesting, Reserve, Marketing, Subsequent Airdrops) remain off-market during their respective restriction periods and thus do not inflate the early circulating supply.
+      </p>
+    </section>
+
+    <section>
+      <h2>5. Roadmap</h2>
+      <p>
+        PandaStake’s roadmap aligns with the milestones displayed on our website’s “Roadmap” section. Below is a detailed timeline:
+      </p>
+      <h3>June 2025 – Sepolia Testnet & Education</h3>
+      <ul>
+        <li>Launch PandaStake v0.1 on Sepolia with <code>StakingETH.sol</code>.</li>
+        <li>Publish legal documents: Disclaimer, Terms of Service, Privacy Policy.</li>
+        <li>Enable testnet ETH staking; users practice DeFi without risk.</li>
+        <li>Begin initial marketing: announcements on Twitter/X, Telegram, Discord.</li>
+      </ul>
+
+      <h3>July 2025 – PANDA Presale (Testnet)</h3>
+      <ul>
+        <li>Deploy <code>PandaToken.sol</code> on Sepolia (testnet).</li>
+        <li>Open presale for 1 300 000 PANDA testnet tokens via <code>PandaPresale.sol</code>.</li>
+        <li>Collect presale sign-ups (emails and on-chain commitments).</li>
+        <li>Release educational materials: “How to buy PANDA in presale,” MetaMask instructions.</li>
+      </ul>
+
+      <h3>August 2025 – Token Launch & Mainnet Go-Live (Polygon)</h3>
+      <ul>
+        <li>Deploy PANDA on Polygon (L2) mainnet.</li>
+        <li>Distribute presale tokens to participants on-chain.</li>
+        <li>Complete external security audit of smart contracts on Polygon.</li>
+        <li>Launch “PANDA Staking” (<code>StakingPanda.sol</code>), allowing users to stake PANDA for additional rewards.</li>
+      </ul>
+
+      <h3>September 2025 – DEX Listing & DAO Activation</h3>
+      <ul>
+        <li>List PANDA on a decentralized exchange (e.g., QuickSwap) for ETH↔PANDA trading.</li>
+        <li>Initiate DAO governance: establish multisig, voting processes for staking parameters and airdrop eligibility.</li>
+        <li>Begin first DAO proposals (e.g., future token allocations, partnership integrations).</li>
+      </ul>
+
+      <h3>October 2025 – CEX Listing & Major Exchange Availability</h3>
+      <ul>
+        <li>Secure listing on at least one major centralized exchange (CEX).</li>
+        <li>Provide liquidity in PANDA/USDC or PANDA/ETH pairs for broader market access.</li>
+        <li>Ramp up marketing to support trading volume and community growth.</li>
+      </ul>
+
+      <h3>November 2025+ – Something Big Is Coming… Stay Tuned</h3>
+      <ul>
+        <li>Expand the ecosystem: introduce staking for partner tokens and yield farming features.</li>
+        <li>Forge partnerships with major DeFi projects on Polygon.</li>
+        <li>Launch a PandaStake Bounty Program and additional airdrop campaigns.</li>
+        <li>Plan 2026 roadmap: cross-chain bridging (Panda cross-chain), advanced DAO governance enhancements.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>6. Team & Mission</h2>
+      <p>
+        PandaStake is developed by a small, anonymous collective of blockchain and DeFi enthusiasts. The core contributors include smart contract developers, backend engineers, frontend/UI designers, security auditors, and marketing strategists—all working together under pseudonymous handles.
+      </p>
+      <p>
+        <strong>Mission Statement:</strong><br />
+        PandaStake’s goal is to democratize DeFi education by offering a fully transparent, testnet-based staking experience. We empower users to understand blockchain mechanics safely, preparing them for mainstream DeFi participation on Polygon. Our open-source philosophy ensures that every line of code can be audited, fostering trust and community-driven development.
+      </p>
+    </section>
+
+    <section>
+      <h2>7. Contact & Support</h2>
+      <p>
+        For questions, feedback, or technical support, please reach out via:
+      </p>
+      <ul>
+        <li><strong>Email:</strong> support@pandastake.net</li>
+        <li><strong>Telegram:</strong> <a href="https://t.me/PandaStakeNet" style="color:#2ecc71;" target="_blank">t.me/PandaStakeNet</a></li>
+        <li><strong>Twitter:</strong> <a href="https://twitter.com/PandaStakeNet" style="color:#2ecc71;" target="_blank">@PandaStakeNet</a></li>
+        <li><strong>GitHub:</strong> <a href="https://github.com/TwojLogin/PandaStake" style="color:#2ecc71;" target="_blank">github.com/TwojLogin/PandaStake</a></li>
+      </ul>
+      <p>
+        <em>Support hours:</em> Monday–Friday, 09:00–18:00 CEST. After hours and weekends: responses within 24–48 business hours.
+      </p>
+    </section>
+  </div>
+</body>
+</html>
