@@ -1349,3 +1349,12 @@ input[type="number"]::-moz-outer-spin-button {
   -moz-appearance: none;
   margin: 0;
 }
+
+.stake-item h2{
+  display: inline-flex;
+  gap: 0.3rem;
+  white-space: nowrap;
+}
+.content .main-content{
+  margin-bottom: 0rem;
+}
