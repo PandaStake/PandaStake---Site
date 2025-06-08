@@ -399,14 +399,14 @@
   }
   
   .stake-item {
-    background: url('../images/network-green2.png');
+    background: #1e1e1e;
     border-radius: 0;
     padding: 20px;
     text-align: center;
     width: 500px;
     height: 260px;
     position: relative;
-    top: -5px;
+    top: -6px;
     background-size: 100% 100%;
     display: flex;
     flex-direction: column;
@@ -419,7 +419,7 @@
     content: "";
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(0,0,0,0.6);
+    background-color: rgba(0,0,0,0);
     z-index: 1;
   }
   
@@ -1349,19 +1349,3 @@ input[type="number"]::-moz-outer-spin-button {
   -moz-appearance: none;
   margin: 0;
 }
-
-
-/* przywróć stopce pełną szerokość obszaru content-wrapper */
-.content-wrapper .site-footer {
-  margin-left: -62px !important;
-  width: calc(100% + 195px) !important;
-}
-
-
-
-  .footer-inner > span {
-    margin-left: 20px !important;
-  }
-  .footer-inner .footer-social{
-    margin-right: 80px !important
-  }
